@@ -1,0 +1,223 @@
+/* Save this in theme/css/booking-form.css */
+.booking-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Inter', Arial, sans-serif;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Progress Bar Styles */
+.booking-progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+.booking-progress-steps .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+.booking-progress-steps .step span {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: #888;
+    transition: all 0.3s ease;
+}
+.booking-progress-steps .step.active span {
+    background-color: #ff6633;
+    color: white;
+}
+.booking-progress-steps .step p {
+    color: #888;
+    font-size: 14px;
+}
+.booking-progress-steps .step.active p {
+    color: #ff6633;
+}
+
+/* Progress Bar Line */
+.booking-progress-bar {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e0e0e0;
+    z-index: 0;
+}
+.progress-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background-color: #e0e0e0;
+    transition: width 0.3s ease;
+}
+.progress-section.active {
+    background-color: #ff6633;
+}
+
+/* Form Steps */
+.form-step {
+    display: none;
+}
+.form-step.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Common Form Elements */
+.form-group {
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+}
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+input:focus, select:focus {
+    outline: none;
+    border-color: #ff6633;
+    box-shadow: 0 0 0 2px rgba(255,102,51,0.1);
+}
+
+/* Service Selection Step */
+.weekdays {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.weekday-checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.weekday-checkbox input {
+    display: none;
+}
+.weekday-checkbox .checkmark {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+.weekday-checkbox input:checked + .checkmark {
+    background-color: #ff6633;
+    color: white;
+}
+.weekday-checkbox span {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Time Slots */
+.time-slots-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+.time-tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+.time-tab.active {
+    color: #ff6633;
+    border-bottom: 2px solid #ff6633;
+}
+.time-slots-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.time-slot {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.time-slot:hover {
+    background-color: #f9f9f9;
+}
+.time-slot.selected {
+    background-color: #ff6633;
+    color: white;
+    border-color: #ff6633;
+}
+
+/* Navigation Buttons */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.back-btn, .next-btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.back-btn {
+    background-color: #f0f0f0;
+    color: #666;
+    border: none;
+}
+.next-btn {
+    background-color: #ff6633;
+    color: white;
+    border: none;
+}
+.back-btn:hover {
+    background-color: #e0e0e0;
+}
+.next-btn:hover {
+    background-color: #e55a2b;
+}
+
+/* Payment Step */
+.payment-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+.payment-details h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+.total-price {
+    font-size: 24px;
+    color: #ff6633;
+    font-weight: bold;
+}
