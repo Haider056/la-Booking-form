@@ -1,6 +1,4 @@
-/**
-save this in code snippet php
-*/
+
 /**
  * Custom Booking Form
  * 
@@ -131,21 +129,13 @@ function custom_booking_form_shortcode($atts) {
     
     // Progress steps
     echo '<div class="booking-progress-steps">';
-    echo '<div class="step step-1 active"><span class="step-number">1.</span> Service</div>';
-    echo '<div class="step step-2"><span class="step-number">2.</span> Time</div>';
-    echo '<div class="step step-3"><span class="step-number">3.</span> Details</div>';
-    echo '<div class="step step-4"><span class="step-number">4.</span> Payment</div>';
-    echo '<div class="step step-5"><span class="step-number">5.</span> Done</div>';
+    echo '<div class="step step-1 active"><span class="step-number">1</span> Service</div>';
+    echo '<div class="step step-2"><span class="step-number">2</span> Time</div>';
+    echo '<div class="step step-3"><span class="step-number">3</span> Details</div>';
+    echo '<div class="step step-4"><span class="step-number">4</span> Payment</div>';
+    echo '<div class="step step-5"><span class="step-number">5</span> Done</div>';
     echo '</div>';
-    
-    // Progress bar
-    echo '<div class="booking-progress-bar">';
-    echo '<div class="progress-section section-1 active"></div>';
-    echo '<div class="progress-section section-2"></div>';
-    echo '<div class="progress-section section-3"></div>';
-    echo '<div class="progress-section section-4"></div>';
-    echo '<div class="progress-section section-5"></div>';
-    echo '</div>';
+  
     
     // Form
     echo '<form id="' . esc_attr($form_id) . '" class="booking-form" method="post">';
@@ -155,113 +145,103 @@ function custom_booking_form_shortcode($atts) {
     echo '<input type="hidden" name="category_id" value="' . esc_attr($category_id) . '">';
     echo '<input type="hidden" name="current_step" value="1">';
     
-    // Step 1: Service selection
-    echo '<div class="form-step step-1-content active">';
-    echo '<h3>Please select service:</h3>';
-    
-    echo '<div class="form-row">';
-    echo '<div class="form-group">';
-    echo '<label>Category</label>';
-    echo '<div class="select-wrapper">';
-    echo '<select name="service_category" disabled>';
-    echo '<option value="' . esc_attr($category_id) . '">' . esc_html($category['name']) . '</option>';
-    echo '</select>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    
-    echo '<div class="form-row three-column">';
-    
-    // Service column 1
-    echo '<div class="form-group">';
-    echo '<label>' . esc_html($category['service_label_1']) . '</label>';
-    echo '<div class="select-wrapper">';
-    if ($category['service_field_1'] === 'dropdown' && isset($category['service_options_1'])) {
-        echo '<select name="service_option_1">';
-        foreach ($category['service_options_1'] as $option) {
-            echo '<option value="' . esc_attr($option) . '">' . esc_html($option) . '</option>';
-        }
-        echo '</select>';
-    } else {
-        echo '<input type="text" name="service_option_1" placeholder="Enter ' . esc_attr($category['service_label_1']) . '">';
-    }
-    echo '</div>';
-    echo '</div>';
-    
-    // Service column 2
-    echo '<div class="form-group">';
-    echo '<label>' . esc_html($category['service_label_2']) . '</label>';
-    echo '<div class="select-wrapper">';
-    if ($category['service_field_2'] === 'dropdown' && isset($category['service_options_2'])) {
-        echo '<select name="service_option_2">';
-        foreach ($category['service_options_2'] as $option) {
-            echo '<option value="' . esc_attr($option) . '">' . esc_html($option) . '</option>';
-        }
-        echo '</select>';
-    } else {
-        echo '<input type="text" name="service_option_2" placeholder="Enter ' . esc_attr($category['service_label_2']) . '">';
-    }
-    echo '</div>';
-    echo '</div>';
-    
-    // Employee selection
-    echo '<div class="form-group">';
-    echo '<label>Employee</label>';
-    echo '<div class="select-wrapper">';
-    echo '<select name="employee">';
-    foreach ($employee_options as $employee) {
-        echo '<option value="' . esc_attr($employee['id']) . '">' . esc_html($employee['name']) . ' ($' . number_format($employee['price'], 2) . ')</option>';
+// Step 1: Service selection
+echo '<div class="form-step step-1-content active">';
+
+// Category name (15px)
+echo '<h5 style="font-size: 15px; margin: 20px 0;">' . esc_html($category['name']) . '</h5>';
+
+
+echo '<div class="form-row"></div>';
+
+echo '<div class="form-row three-column">';
+
+// Service column 1
+echo '<div class="form-group">';
+echo '<label style="font-size: 13px;">' . esc_html($category['service_label_1']) . '</label>';
+echo '<div class="select-wrapper">';
+if ($category['service_field_1'] === 'dropdown' && isset($category['service_options_1'])) {
+    echo '<select name="service_option_1" style="font-size: 13px;">';
+    foreach ($category['service_options_1'] as $option) {
+        echo '<option value="' . esc_attr($option) . '">' . esc_html($option) . '</option>';
     }
     echo '</select>';
-    echo '</div>';
-    echo '</div>';
-    
-    echo '</div>'; // End three-column
-    
-    echo '<div class="form-status">none</div>';
-    
-    echo '<div class="form-row availability-row">';
-    echo '<div class="form-group">';
-    echo '<label>I\'m available on or after</label>';
-    echo '<input type="text" name="available_date" class="datepicker" value="' . esc_attr(date('F j, Y')) . '">';
-    echo '</div>';
-    
-    echo '<div class="form-group weekdays">';
-    $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri');
-    foreach ($days as $day) {
-        echo '<label class="weekday-checkbox">';
-        echo '<input type="checkbox" name="available_days[]" value="' . esc_attr($day) . '" checked>';
-        echo '<span class="checkmark">' . esc_html($day) . '</span>';
-        echo '</label>';
-    }
-    echo '</div>';
-    echo '</div>';
-    
-    echo '<div class="form-row time-range-row">';
-    echo '<div class="form-group">';
-    echo '<label>Start from</label>';
-    echo '<div class="select-wrapper">';
-    echo '<select name="start_time">';
-    for ($hour = 8; $hour <= 17; $hour++) {
-        $time_str = sprintf('%02d:00 %s', $hour > 12 ? $hour - 12 : $hour, $hour >= 12 ? 'pm' : 'am');
-        echo '<option value="' . esc_attr($time_str) . '">' . esc_html($time_str) . '</option>';
+} else {
+    echo '<input type="text" name="service_option_1" placeholder="Enter ' . esc_attr($category['service_label_1']) . '" style="font-size: 13px;">';
+}
+echo '</div>';
+echo '</div>';
+
+// Service column 2
+echo '<div class="form-group">';
+echo '<label style="font-size: 13px;">' . esc_html($category['service_label_2']) . '</label>';
+echo '<div class="select-wrapper">';
+if ($category['service_field_2'] === 'dropdown' && isset($category['service_options_2'])) {
+    echo '<select name="service_option_2" style="font-size: 13px;">';
+    foreach ($category['service_options_2'] as $option) {
+        echo '<option value="' . esc_attr($option) . '">' . esc_html($option) . '</option>';
     }
     echo '</select>';
-    echo '</div>';
-    echo '</div>';
+} else {
+    echo '<input type="text" name="service_option_2" placeholder="Enter ' . esc_attr($category['service_label_2']) . '" style="font-size: 13px;">';
+}
+echo '</div>';
+echo '</div>';
+
+// Employee selection
+echo '<div class="form-group">';
+echo '<div class="select-wrapper" style="font-size: 13px;">';
+echo '</div>';
+echo '</div>';
+
+echo '</div>';
+ // End three-column
     
-    echo '<div class="form-group">';
-    echo '<label>Finish by</label>';
-    echo '<div class="select-wrapper">';
-    echo '<select name="end_time">';
-    for ($hour = 9; $hour <= 18; $hour++) {
-        $time_str = sprintf('%02d:00 %s', $hour > 12 ? $hour - 12 : $hour, $hour >= 12 ? 'pm' : 'am');
-        echo '<option value="' . esc_attr($time_str) . '"' . ($hour == 18 ? ' selected' : '') . '>' . esc_html($time_str) . '</option>';
-    }
-    echo '</select>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+
+echo '<div class="form-row availability-time-row" style="font-size: 12px;">'; // Overall font size
+echo '<div class="form-group availability-date">';
+echo '<label style="font-size: 12px;">I\'m available on or after</label>';
+echo '<input style="font-size: 12px;" type="text" name="available_date" class="datepicker" value="' . esc_attr(date('F j, Y')) . '">';
+echo '</div>';
+
+echo '<div class="form-group weekdays" style="font-size: 6px;">';
+$days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri');
+foreach ($days as $day) {
+    echo '<label class="weekday-checkbox" style="font-size: 7px; display: block; margin-top: 10px;">'; // Reduced font size and increased top margin
+    echo '<input type="checkbox" name="available_days[]" value="' . esc_attr($day) . '" checked>';
+    echo '<span class="checkmark" style="font-size: 10px;">' . esc_html($day) . '</span>'; // Smaller font size
+    echo '</label>';
+}
+echo '</div>';
+
+echo '<div class="form-group">';
+echo '<label style="font-size: 12px;">Start from</label>';
+echo '<div class="select-wrapper">';
+echo '<select style="font-size: 12px;" name="start_time">';
+for ($hour = 8; $hour <= 17; $hour++) {
+    $time_str = sprintf('%02d:00 %s', $hour > 12 ? $hour - 12 : $hour, $hour >= 12 ? 'pm' : 'am');
+    echo '<option value="' . esc_attr($time_str) . '">' . esc_html($time_str) . '</option>';
+}
+echo '</select>';
+echo '</div>';
+echo '</div>';
+
+echo '<div class="form-group">';
+echo '<label style="font-size: 12px;">Finish by</label>';
+echo '<div class="select-wrapper" style="font-size: 12px;">';
+echo '<select name="end_time">';
+for ($hour = 9; $hour <= 18; $hour++) {
+    $time_str = sprintf('%02d:00 %s', $hour > 12 ? $hour - 12 : $hour, $hour >= 12 ? 'pm' : 'am');
+    echo '<option value="' . esc_attr($time_str) . '"' . ($hour == 18 ? ' selected' : '') . '>' . esc_html($time_str) . '</option>';
+}
+echo '</select>';
+echo '</div>';
+echo '</div>';
+
+echo '</div>';
+ // End availability-time-row
+	
+ 
     
     echo '<div class="form-navigation">';
     echo '<button type="button" class="next-btn">NEXT</button>';
@@ -303,7 +283,6 @@ function custom_booking_form_shortcode($atts) {
     echo '<div class="form-group">';
     echo '<label>Phone</label>';
     echo '<div class="phone-input-group">';
-    echo '<div class="country-code"><span>+</span></div>';
     echo '<input type="tel" name="customer_phone" required>';
     echo '</div>';
     echo '</div>';

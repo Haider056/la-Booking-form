@@ -1,6 +1,6 @@
 /* Save this in theme/css/booking-form.css */
 .booking-form-container {
-    max-width: 600px;
+    max-width: 1100px;
     margin: 0 auto;
     font-family: 'Inter', Arial, sans-serif;
     background: white;
@@ -13,7 +13,7 @@
 .booking-progress-steps {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     position: relative;
 }
 .booking-progress-steps .step {
@@ -23,8 +23,8 @@
     z-index: 1;
 }
 .booking-progress-steps .step span {
-    width: 40px;
-    height: 40px;
+    width: 27px;
+    height: 27px;
     border-radius: 50%;
     background-color: #e0e0e0;
     display: flex;
@@ -40,7 +40,7 @@
 }
 .booking-progress-steps .step p {
     color: #888;
-    font-size: 14px;
+    font-size: 10px;
 }
 .booking-progress-steps .step.active p {
     color: #ff6633;
@@ -80,7 +80,13 @@
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+.form-row .form-group {
+    flex: 1;
+}
 /* Common Form Elements */
 .form-group {
     margin-bottom: 20px;
@@ -180,7 +186,7 @@ input:focus, select:focus {
 .form-navigation {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 1px;
 }
 .back-btn, .next-btn {
     padding: 12px 25px;
@@ -192,11 +198,14 @@ input:focus, select:focus {
     background-color: #f0f0f0;
     color: #666;
     border: none;
+    margin-top:5px;
+    font-size:8px
 }
 .next-btn {
     background-color: #ff6633;
     color: white;
     border: none;
+    font-size:10px
 }
 .back-btn:hover {
     background-color: #e0e0e0;
@@ -220,4 +229,19 @@ input:focus, select:focus {
     font-size: 24px;
     color: #ff6633;
     font-weight: bold;
+}
+.form-group.weekdays {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.weekday-checkbox {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.weekday-checkbox input[type="checkbox"] {
+    margin-right: 5px;
 }
